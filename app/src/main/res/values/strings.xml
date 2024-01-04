@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ProjectSnake</string>
+    <string name="back">Back</string>
+    <string name="version">Snake 0.1.1</string>
+    <string name="game">Snake</string>
+    <string name="settings">Settings</string>
+</resources>
