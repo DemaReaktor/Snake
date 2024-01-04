@@ -10,8 +10,12 @@
     <color name="button">#74B3F4</color>
     <color name="button2">#74B3F4</color>
     <color name="button_border">#FF001A68</color>
-    <color name="background">#A1FF96</color>
+    <color name="field_color">#586A22</color>
+    <color name="own">#FF0000</color>
+
     <color name="background_day">#A1FF96</color>
+    <color name="text_day">#000000</color>
+
     <color name="background_night">#20321E</color>
-    <color name="field">#586A22</color>
+    <color name="text_night">#FFFFFF</color>
 </resources>

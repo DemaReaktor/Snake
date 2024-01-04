@@ -1,10 +1,15 @@
 package com.example.projectsnake
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.MaterialTheme
@@ -17,8 +22,8 @@ import com.example.projectsnake.ui.theme.ProjectSnakeTheme
 import kotlin.system.exitProcess
 
 class MainActivity : ComponentActivity() {
+    private var snake: Snake? = null
     private var sound: Boolean = true
-    private var dark_theme: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,8 @@ class MainActivity : ComponentActivity() {
     }
 
     fun audio(view: View){
+        R.drawable.body
+        ImageView(this)
         sound = !sound
         if(sound)
             (view as ImageButton).setImageResource(android.R.drawable.ic_lock_silent_mode)
@@ -48,11 +55,21 @@ class MainActivity : ComponentActivity() {
             (view as ImageButton).setImageResource(android.R.drawable.ic_lock_silent_mode_off)
     }
 
-    fun dark_theme(view: View){
-        dark_theme = !dark_theme
-        if(dark_theme)
-            R.color.background = R.color.background_night
-        else
-            R.color.background = R.color.background_day
+    fun on_move_event(e: MotionEvent) : Boolean{
+            snake?.move(e)
+        return true
     }
+
+    @SuppressLint("ClickableViewAccessibility")
+    fun play(view: View){
+        setContentView(R.layout.play)
+        val layout: RelativeLayout = findViewById(R.id.field)
+        layout.setOnTouchListener { _, event ->
+            on_move_event(event)
+        }
+        snake?.die()
+        snake = Snake(resources.getIdentifier("own","color",packageName), this, layout)
+        snake?.add(R.color.own)
+    }
+
 }

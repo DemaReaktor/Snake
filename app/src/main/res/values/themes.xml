@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.ProjectSnake" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.ProjectSnake" parent="android:Theme.Material.Light.NoActionBar" >
+        <item name="android:background">@color/background_day</item>
+        <item name="android:textColor">@color/text_day</item>
+    </style>
 </resources>
