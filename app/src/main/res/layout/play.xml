@@ -3,10 +3,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
+    android:id="@+id/play"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/back_settings"
+        android:id="@+id/back_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape"
@@ -27,13 +28,11 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
         android:layout_marginBottom="50dp"
         android:background="@color/field_color"
-        android:gravity="center">
+        >
 
     </RelativeLayout>
 

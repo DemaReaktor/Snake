@@ -1,5 +1,6 @@
 package com.example.projectsnake
 
+import android.app.Notification.Action
 import android.graphics.PorterDuff
 import kotlin.math.sqrt
 import android.media.Image
@@ -37,24 +38,40 @@ class Snake( _color: Int, _main: MainActivity, _layout: RelativeLayout, _vector:
         media = MediaPlayer.create(main,R.raw.chipi)
         add(_color, _vector)
     }
-
+    fun setTransparent(value:Float){
+        for (element in body)
+            element.alpha = value
+    }
     fun move(value:MotionEvent){
-        if(body.isNotEmpty()){
-            var normal = Vector(value.getX() - body[0].translationX,
-                value.getY() - body[0].translationY)
-            if(normal.length() > size.toFloat()*1.5f){
-                normal = normal.normal() * 50f / (4 + body.size.toFloat())
-                last = normal
-                body[0].translationX += normal.x
-                body[0].translationY += normal.y
-                curve.add(Vector(body[0].translationX, body[0].translationY))
-                for (index in 1..body.size - 1){
-                    val end = curve.end(index*50f)
-                    body[index].translationX = end.x
-                    body[index].translationY = end.y
+        when (value.action){
+            MotionEvent.ACTION_UP -> {
+                media.stop()
+                setTransparent(0f)
+            }
+            MotionEvent.ACTION_DOWN -> {
+                media.start()
+                setTransparent(100f)
+            }
+            else -> {
+                if(body.isNotEmpty()){
+                    var normal = Vector(value.getX() - body[0].translationX,
+                        value.getY() - body[0].translationY)
+                    if(normal.length() > size.toFloat()*1.5f){
+                        normal = normal.normal() * 50f / (4 + body.size.toFloat())
+                        last = normal
+                        body[0].translationX += normal.x
+                        body[0].translationY += normal.y
+                        curve.add(Vector(body[0].translationX, body[0].translationY))
+                        for (index in 1..body.size - 1){
+                            val end = curve.end(index*50f)
+                            body[index].translationX = end.x
+                            body[index].translationY = end.y
+                        }
+                    }
                 }
             }
         }
+
     }
     fun add(value:Int, pos:Vector? = null){
         if(!media.isPlaying){
@@ -97,5 +114,6 @@ class Snake( _color: Int, _main: MainActivity, _layout: RelativeLayout, _vector:
         }
         body = emptyList()
         curve = Curve(50f)
+        media.stop()
     }
 }
