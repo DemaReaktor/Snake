@@ -19,8 +19,6 @@ class SqlLite(
                 "name TEXT," +
                 "status BOOL)"
         db?.execSQL(x)
-
-        get_all()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
